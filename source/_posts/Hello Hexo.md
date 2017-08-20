@@ -8,3 +8,6 @@ tag: [jekyll, hexo]
 ---
 
 博客从`Jekyll`转移到`Hexo`……
+<!-- more -->
+
+具体请参考官方文档[Hexo](https://hexo.io/zh-cn/docs/)
