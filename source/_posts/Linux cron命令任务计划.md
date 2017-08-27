@@ -13,7 +13,7 @@ tags: [linux, cron]
 * 要判定该软件包是否已安装，使用 `rpm -q vixie-cron` 命令。
 * 要判定该服务是否在运行，使用 `/sbin/service crond status` 命令。
 
-> `Cron` 的主配置文件是 `/etc/crontab`，它的格式是：
+`Cron` 的主配置文件是 `/etc/crontab`，它的格式是：
 
 ```bash
 minute  hour    day   month   dayofweek command
@@ -29,7 +29,7 @@ minute  hour    day   month   dayofweek command
 
 要启动 `cron` 服务，使用 `/sbin/service crond start` 命令。要停止该服务，使用 `/sbin/service crond stop` 命令。
 
-> `Crontab`常用命令操作
+`Crontab`常用命令操作
 
 ```bash
 crontab file #用指定的文件替代目前的crontab。
@@ -40,7 +40,7 @@ crontab-d #删除用户目前的crontab.
 crontab-c dir- #指定crontab的目录
 ```
 
-> `Crontab`任务简单事例
+`Crontab`任务简单事例
 
 ```
 #每天凌晨0点执行
