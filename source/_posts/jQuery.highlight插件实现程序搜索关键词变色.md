@@ -41,7 +41,7 @@ jQuery.fn.removeHighlight = function() {
 };
 ```
 
-> 其中高亮颜色是可以自定义的，需要注意的是定义的颜色名称需要保证和插件`highlight`一致才能起到效果。如下事例
+其中高亮颜色是可以自定义的，需要注意的是定义的颜色名称需要保证和插件`highlight`一致才能起到效果。如下事例
 
 ```html
 <style>
