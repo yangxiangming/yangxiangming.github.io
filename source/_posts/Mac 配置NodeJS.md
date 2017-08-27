@@ -11,13 +11,13 @@ tags: [mac, os x, node.js]
 <!-- more -->
 `Node.JS`是一个基于`Chrome JavaScript`运行的平台，基于`Google`的`V8`引擎，`V8`引擎执行`JavaScript`的速度非常快，性能非常好。如果你是一个前端程序员，你不懂得像`PHP`、`Python`或`Ruby`等动态编程语言，然后你想创建自己的服务，那么`Node.js`是一个非常好的选择。
 
-> `Mac OS X`配置安装`Node.JS`使用`brew`安装方便快捷
+`Mac OS X`配置安装`Node.JS`使用`brew`安装方便快捷
 
 ```bash
 brew install node
 ```
 
-> 安装完成之后，来测试一下是否执行成功，直接执行`node -v`查看对应版本号即可。然后创建对应测试文件Test.js。
+安装完成之后，来测试一下是否执行成功，直接执行`node -v`查看对应版本号即可。然后创建对应测试文件Test.js。
 
 ```bash
 var http = require('http');
@@ -35,20 +35,20 @@ http.createServer(function (request, response) {
 console.log('Server running at http://127.0.0.1:8888/');
 ```
 
-> 然后中断执行，通过浏览器访问`http://127.0.0.1:8888/`就可以看到Hello Node了
+然后中断执行，通过浏览器访问`http://127.0.0.1:8888/`就可以看到Hello Node了
 
 ```bash
 node Test.js
 ```
 
-> 顺便提一下`brew`的安装和使用，`brew`全称`Homebrew`是`Mac OS X`不可或缺的套件管理器。直接执行如下代码即可
+顺便提一下`brew`的安装和使用，`brew`全称`Homebrew`是`Mac OS X`不可或缺的套件管理器。直接执行如下代码即可
 
 ```bash
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 安装好之后，以后再想安装任何开发所需的软件／拓展／插件／配置等都可以`brew install 你要安装的项`
 
-> 比如我上面安装`Node.JS`的时候，执行`brew install node`，如下自动下载安装是不是很方便
+比如我上面安装`Node.JS`的时候，执行`brew install node`，如下自动下载安装是不是很方便
 
 ```bash
 yangxiangming@yangxiangmingdeMacBook-Pro:~$ brew install node
