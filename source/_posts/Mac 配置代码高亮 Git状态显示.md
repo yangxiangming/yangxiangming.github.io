@@ -9,7 +9,7 @@ tags: [mac, os x, git, 代码提示高亮]
 
 Mac 一个为开发者量身定做的笔记本，相信你已经装好了`iTerm2`了，打开你的`iTerm2`开始我们的配置。
 <!-- more -->
-> 首先进入到Home到目录一般默认打开的都是Home，如果不是输入 cd ~ 回车即可，编辑Home目录下的 .bash_profile 编辑 vim .bash_profile 配置代码如下：
+首先进入到Home到目录一般默认打开的都是Home，如果不是输入 cd ~ 回车即可，编辑Home目录下的 .bash_profile 编辑 vim .bash_profile 配置代码如下：
 
 ```bash
 #<Git branch status>
@@ -94,7 +94,7 @@ export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;36m\]\w\[\033[01;31m\]$(g
 export TERM=xterm-256color
 ```
 
-> 复制粘贴退出保存，然后执行一下 source .bash_profile 回车即可。然后我们在来开启代码高亮开关，编辑 vim .vimrc 开启配置项
+复制粘贴退出保存，然后执行一下 source .bash_profile 回车即可。然后我们在来开启代码高亮开关，编辑 vim .vimrc 开启配置项
 
 ```bash
 #<代码高亮开启>
@@ -104,7 +104,7 @@ syntax on
 set nu
 ```
 
-> 保存退出就可以了。为了确保下次开机命令依然有效，执行如下命令：
+保存退出就可以了。为了确保下次开机命令依然有效，执行如下命令：
 
 ```bash
 echo "[ -r ~/.bashrc ] && source ~/.bashrc" >> .bash_profile
