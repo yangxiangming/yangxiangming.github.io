@@ -11,7 +11,7 @@ tag: [php, ajax, 省市县]
 <!-- more -->
 当然具体还要以自己面对的具体情况做对应调整……如下基于`yaf`框架作原型事例
 
-> Model层逻辑Area.php
+Model层逻辑Area.php
 
 ```php
 <?php
@@ -37,7 +37,7 @@ class AreaModel extends PDO{
 ```
 <div class="mb40"></div>
 
-> Model层逻辑Area.php
+Model层逻辑Area.php
 
 ```php
 <?php
@@ -71,7 +71,7 @@ class areaController extends Yaf_Controller_Abstract {
 }
 ```
 
-> View层结构及Ajax部署Area.phtml
+View层结构及Ajax部署Area.phtml
 
 ```html
 <!DOCTYPE html>
