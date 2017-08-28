@@ -8,14 +8,14 @@ tags: [jekyll, 博客]
 ---
 `Jekyll`是一个简单免费的Blog生成工具，它可以不需要数据库的支持，生成静态文件，还可以免费的部署到`Github`上面，还可以绑定自己的域名，哇塞！是不是感觉很棒是不是感觉很高大上^_^.还等什么赶紧搞一个。
 <!-- more -->
-> 如下以Mac OS系统微操作背景，生成目录命令如下
+如下以Mac OS系统微操作背景，生成目录命令如下
 
 ```bash
 $ gem install jekyll #安装jekyll
 $ jekyll new yangxiangming.github.io #创建jekyll目录blog
 ```
 
-> 当然如果想在本地运行，继续执行命令如下
+当然如果想在本地运行，继续执行命令如下
 
 ```bash
 $ cd yangxiangming.github.io #进入到blog目录
@@ -26,14 +26,14 @@ $ jekyll serve #启动jekyll服务
 
 `Jekyll`静态博客如果文章数量太多没有分页实在对于我们有强迫症的人就是精神的折磨，好在`Jekyll`支持数据分页。开启`Jekyll`分页模式
 
-> 配置文件`_config.yml`添加分页配置项
+配置文件`_config.yml`添加分页配置项
 
 ```config
 paginate: 6
 paginate_path: "page:num"
 ```
 
-> 设置文章列表页`index.html`(一般默认都是`index.html`)
+设置文章列表页`index.html`(一般默认都是`index.html`)
 
 ```html
 <ul class="post-list">

@@ -9,7 +9,7 @@ tag: [php, mognodb, thinkphp]
 
 `Thinkphp`对`Mongdb`的支持依赖于`PHP`对`Mongodb`的支持，如果出现类似“系统不支持:`mongoClient`”的提示，说明你的`PHP`还没支持`Mongodb`扩展。配置就不介绍了`php.ini`……
 <!-- more -->
-> Model文件：ExampleModel.class.php
+Model文件：ExampleModel.class.php
 
 ```php
 <?php
@@ -27,7 +27,7 @@ class ExampleModel extends MongoModel {
 
 }
 ```
-> Controller文件：ExampleController.class.php
+Controller文件：ExampleController.class.php
 
 ```php
 <?php
@@ -67,7 +67,7 @@ class ExampleController extends ExampleModel{
 一切需要实践才知道可不可行，赶紧去试试吧！
 
 `TP`框架开发项目的过程中经常会在调试中可能输入的URL有误导致浏览器报错，而非我们通常所设置的`404`那样人性化显示……
-> 例如错误
+例如错误
 
 ```bash
 :）非法操作:example
@@ -85,7 +85,7 @@ TRACE
 ```
 这个时候可能我们开发不需要做什么处理，但是难保用户或者好奇心者给你乱输URL让你的项目报警，这就需要我们自己进行处理了。
 
-> 引导用户访问不存在的Controller或Function，在Controller文件创建EmptyController.class.php
+引导用户访问不存在的Controller或Function，在Controller文件创建EmptyController.class.php
 
 ```php
 <?php
@@ -110,7 +110,7 @@ class EmptyController extends Controller {
 }
 ```
 
-> 在Lib文件创建EmptyAction.class.php控制器
+在Lib文件创建EmptyAction.class.php控制器
 
 ```php
 <?php

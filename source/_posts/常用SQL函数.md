@@ -11,7 +11,7 @@ tags: [sql]
 <!-- more -->
 函数的语法
 
-```sql
+```bash
 SELECT function(column) FROM `表`
 
 #Sample
@@ -32,7 +32,7 @@ SELECT ABS(column) FROM `表` #返回column的绝对值
 
 例如相近的数据查询，主要在相近二字，测试表数据如下：
 
-```sql
+```bash
 mysql> select * from sample;
 +----+-------------+-------+-------+------------+------------+
 | id | title       | price | total | createTime | updateTime |
@@ -51,7 +51,7 @@ mysql> select * from sample;
 ```
 
 通过`SQL`中的`ABS`绝对值函数来进行值的查询筛选，如下操作测试：
-```sql
+```bash
 mysql> select id,title,createTime,abs(1396489808-createTime) as tmpTime from sample order by tmpTime asc limit 6;
 +----+-------------+------------+---------+
 | id | title       | createTime | tmpTime |

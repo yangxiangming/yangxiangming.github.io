@@ -9,7 +9,7 @@ tags: [php, mcrypt, 加密]
 
 `AES`(英文全称英：Advanced Encryption Standard，缩写：`AES`)对称加密算法是目前世界流行的对称加密算法之一，据说美国联邦政府也以这种加密方式为标准，瞬间档次值爆表。
 <!-- more -->
-> 以PHP为例，请确保PHP配置扩展`mcrypt`已开启，具体填充模式、算法位数、算法Key大小长度等请参考官方手册[Mcrypt](http://php.net/manual/zh/book.mcrypt.php)
+以PHP为例，请确保PHP配置扩展`mcrypt`已开启，具体填充模式、算法位数、算法Key大小长度等请参考官方手册[Mcrypt](http://php.net/manual/zh/book.mcrypt.php)
 
 ```php
 <?php

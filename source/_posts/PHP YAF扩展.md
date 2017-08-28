@@ -35,7 +35,7 @@ phpize
 make && sudo make install
 ```
 
-  编译安装完成之后，再去ext/php.ini中添加对应的yaf.so扩展，一定要记得重启Apache。
+编译安装完成之后，再去ext/php.ini中添加对应的yaf.so扩展，一定要记得重启Apache。
 
 #### 文件目录结构
 * 框架目录
