@@ -102,13 +102,13 @@ fatal: destination path 'yangxiangming.github.io' already exists and is not an e
 
 那么我们怎么解决这种问题，并且使之成功呢！如下操作步骤详解
 
-> 先进入你想`git clone`到本地的非空文件夹下
+先进入你想`git clone`到本地的非空文件夹下
 
 ```bash
 yangxiangming@yangxiangmingdeMacBook-Pro:~$ cd workstation/yangxiangming.github.io/
 ```
 
-> 然后执行`git clone`到一个临时文件tmp
+然后执行`git clone`到一个临时文件tmp
 
 ```bash
 yangxiangming@yangxiangmingdeMacBook-Pro:~/workstation/yangxiangming.github.io$ git clone --no-checkout git@git.github.net:yangxiangming/yangxiangming.github.io.git tmp
@@ -120,19 +120,19 @@ Receiving objects: 100% (3/3), done.
 Checking connectivity... done.
 ```
 
-> 在把`git clone`下来的`.git`移动到当前文件夹下
+在把`git clone`下来的`.git`移动到当前文件夹下
 
 ```bash
 yangxiangming@yangxiangmingdeMacBook-Pro:~/workstation/yangxiangming.github.io$ mv tmp/.git .
 ```
 
-> 这个时候就可以把第一步`git clone`的临时文件tmp删除掉了
+这个时候就可以把第一步`git clone`的临时文件tmp删除掉了
 
 ```bash
 yangxiangming@yangxiangmingdeMacBook-Pro:~/workstation/yangxiangming.github.io(master+)$ sudo rm -rf tmp
 ```
 
-> 最后删除`git`操作痕迹，撤销当前`head`的内容并重置
+最后删除`git`操作痕迹，撤销当前`head`的内容并重置
 
 ```bash
 yangxiangming@yangxiangmingdeMacBook-Pro:~/workstation/yangxiangming.github.io(master+)$ git reset --hard HEAD
