@@ -176,22 +176,22 @@ function getPrimeNumber($nums=100){
  * description 获取毫秒时间
  */
 function getMsec($isboor = true) {
-    list($usec, $sec) = explode(" ", microtime());
-    $microtime = ((float)$usec+(float)$sec);
-    list($usec, $sec) = explode(".", $microtime);
-    $date = date('Y-m-d H:i:s x', $usec);
-    $result = str_replace('x', $sec, $date);
-    return $isboor?$result.'Msec':$microtime;
+  list($usec, $sec) = explode(" ", microtime());
+  $microtime = ((float)$usec+(float)$sec);
+  list($usec, $sec) = explode(".", $microtime);
+  $date = date('Y-m-d H:i:s x', $usec);
+  $result = str_replace('x', $sec, $date);
+  return $isboor?$result.'Msec':$microtime;
 }
 
 /**
  * description 获取设备
  */
 function isClient() {
-    if(!empty($_SERVER('HTTP_USER_AGENT') && (substr($_SERVER('HTTP_USER_AGENT'), 0, 12) == 'great-winner') || strpos($_SERVER['HTTP_USER_AGENT']), 'great-winner')){
-        return true;
-    }
-    return false;
+  if(!empty($_SERVER('HTTP_USER_AGENT') && (substr($_SERVER('HTTP_USER_AGENT'), 0, 12) == 'great-winner') || strpos($_SERVER['HTTP_USER_AGENT']), 'great-winner')){
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -199,49 +199,49 @@ function isClient() {
  * param $time 时间戳
  */
 function getFormatTime($time){
-    date_default_timezone_set('PRC'); //设置东八区时间
-    $nowTime = time(); //当前时间
-    $result = $temp = 0;
-    //时间匹配
-    switch ($time) {
-        //分钟
-        case ($time+60)>$nowTime:
-            //$temp = $nowTime-$time;
-            //$result = $temp.'秒前';
-            $result = '刚刚';
-            break;
-        //小时
-        case ($time+(60*60))>$nowTime:
-            $temp = date('i', $nowTime-$time);
-            $result = $temp.'分钟前';
-            break;
-        //一天
-        case ($time+(60*60*24))>$nowTime:
-            $temp = date('H', $nowTime)-date('H', $time);
-            $result = $temp.'小时前';
-            break;
-        //昨天
-        case ($time+(60*60*24*2))>$nowTime:
-            $temp = date('H:i', $time);
-            $result = '昨天'.$temp;
-            break;
-        //前天
-        case ($time+(60*60*24*3))>$nowTime:
-            $temp = date('H:i', $time);
-            $result = '前天'.$temp;
-            break;
-        //7天内
-        case ($time+(60*60*24*7))>$nowTime:
-            $temp = $nowTime-$time;
-            $day = floor($temp/(60*60*24));
-            $result = $day.'天前'.date('H:i', $time);
-            break;
-        //年月日
-        default:
-            $result = date('Y-m-d', $time);
-            break;
-    }
-    return $result;
+  date_default_timezone_set('PRC'); //设置东八区时间
+  $nowTime = time(); //当前时间
+  $result = $temp = 0;
+  //时间匹配
+  switch ($time) {
+    //分钟
+    case ($time+60)>$nowTime:
+      //$temp = $nowTime-$time;
+      //$result = $temp.'秒前';
+      $result = '刚刚';
+      break;
+    //小时
+    case ($time+(60*60))>$nowTime:
+      $temp = date('i', $nowTime-$time);
+      $result = $temp.'分钟前';
+      break;
+    //一天
+    case ($time+(60*60*24))>$nowTime:
+      $temp = date('H', $nowTime)-date('H', $time);
+      $result = $temp.'小时前';
+      break;
+    //昨天
+    case ($time+(60*60*24*2))>$nowTime:
+      $temp = date('H:i', $time);
+      $result = '昨天'.$temp;
+      break;
+    //前天
+    case ($time+(60*60*24*3))>$nowTime:
+      $temp = date('H:i', $time);
+      $result = '前天'.$temp;
+      break;
+    //7天内
+    case ($time+(60*60*24*7))>$nowTime:
+      $temp = $nowTime-$time;
+      $day = floor($temp/(60*60*24));
+      $result = $day.'天前'.date('H:i', $time);
+      break;
+    //年月日
+    default:
+      $result = date('Y-m-d', $time);
+      break;
+  }
+  return $result;
 }
 
 /**
@@ -250,16 +250,38 @@ function getFormatTime($time){
  * param $attrs 指定过滤tag属性
  */
 function removeAttr($html, $attrs=[]){
-    //删除所有属性
-    if (!is_array($attrs) or count($attrs) == 0){
-        return preg_replace('~<([a-z]+)[^>]*>~i','<$1>', $html);
-    } else { //删除部分指定的属性
-        foreach($attrs as $attr){
-            $regx = '~<([^>]*?)[\s\t\r\n]+('.$attr.'[\s\t\r\n]*=[\s\t\r\n]*([\"\'])[^\3]*?\3)([^>]*)>~i';
-            $html = preg_replace($regx,'<$1 $4>', $html);
-        }
-        return $html;
+  //删除所有属性
+  if (!is_array($attrs) or count($attrs) == 0){
+    return preg_replace('~<([a-z]+)[^>]*>~i','<$1>', $html);
+  } else { //删除部分指定的属性
+    foreach($attrs as $attr){
+      $regx = '~<([^>]*?)[\s\t\r\n]+('.$attr.'[\s\t\r\n]*=[\s\t\r\n]*([\"\'])[^\3]*?\3)([^>]*)>~i';
+      $html = preg_replace($regx,'<$1 $4>', $html);
     }
+    return $html;
+  }
+}
+
+/**
+ * 对象数组互转
+ */
+function objectChangeArray($result, $mode=false) {
+  if($mode){
+    if(is_object($result)){
+        $result = get_object_vars($result);  
+    }
+    if(is_array($object)){  
+        return array_map(__FUNCTION__, $result);  
+    } else {
+        return $result;  
+    }
+  } else {
+    if(is_array($result)){
+        return (object)array_map(__FUNCTION__, $result);  
+    } else {  
+        return $result;  
+    }
+  }
 }
 
 ```
