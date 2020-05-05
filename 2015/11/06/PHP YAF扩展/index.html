@@ -1,0 +1,196 @@
+<!DOCTYPE HTML>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>PHP YAF扩展 | YANGXIANGMING</title>
+
+  
+  <meta name="author" content="yangxiangming">
+  
+
+  
+  <meta name="description" content="Vi estas mia vivo …">
+  
+
+  
+  
+  <meta name="keywords" content="php,yaf">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="PHP YAF扩展">
+
+  <meta property="og:site_name" content="YANGXIANGMING">
+
+  
+  <meta property="og:image" content="/favicon.ico">
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="YANGXIANGMING" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">YANGXIANGMING<sup>Beta 1.0.0</sup></a>
+    </h1>
+    <p class="site-description"></p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">主页</a></li>
+      
+        <li><a href="/archives">归档</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>PHP YAF扩展</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2015/11/06/PHP YAF扩展/" rel="bookmark">
+        <time class="entry-date published" datetime="2015-11-06T03:02:25.000Z">
+          Nov 6 2015
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p><code>YAF</code>是鸟哥(<a href="http://www.laruence.com/" target="_blank" rel="noopener">惠新宸</a>)经典作品之一。<code>YAF</code> 扩展框架(全称:Yet Another Framework)</p>
+<a id="more"></a>
+<p>YAF 框架，全称 Yet Another Framework，是一个C语言编写的<code>PHP</code>框架，是一个以<code>PHP</code>扩展形式提供的<code>PHP开</code>发框架, 相比于一般的PHP框架, 它更快，更轻便. 它提供了<code>Bootstrap</code>, 路由, 分发, 视图, 插件, 既不会有损性能, 又能提高开发效率一个全功能的<code>PHP</code>框架。详情请参考官方文档 <a href="http://www.laruence.com/manual" target="_blank" rel="noopener">YAF</a>。</p>
+<h4 id="扩展配置"><a href="#扩展配置" class="headerlink" title="扩展配置"></a>扩展配置</h4><ul>
+<li>Windows配置<ul>
+<li>首先官网下载对应版本的<a href="https://pecl.php.net/package/yaf" target="_blank" rel="noopener">FAY</a>扩展，推荐使用stable稳定版。</li>
+<li>解压后复制php_yaf.dll文件到php目录的ext文件中。</li>
+<li>编辑php.ini加载yaf扩展，然后重新启动对应的服务。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">......</span><br><span class="line">extension=php_yaf.dll</span><br></pre></td></tr></table></figure>
+
+<p>再次访问<code>phpinfo()</code>对应的yaf拓展已经加载成功了。</p>
+<ul>
+<li>Mac OS X配置<ul>
+<li>直接打开Mac OS X功能齐全的终端神器iTerm，运行命令如下</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget http://pecl.php.net/get/yaf-2.3.5.tgz</span><br><span class="line">tar zxvf yaf-2.3.5.tgz &amp;&amp; <span class="built_in">cd</span> yaf-2.3.5</span><br><span class="line">phpize</span><br><span class="line">./configure --with-php-config=/usr/bin/php-config</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure>
+
+<p>编译安装完成之后，再去ext/php.ini中添加对应的yaf.so扩展，一定要记得重启Apache。</p>
+<h4 id="文件目录结构"><a href="#文件目录结构" class="headerlink" title="文件目录结构"></a>文件目录结构</h4><ul>
+<li>框架目录</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">├─ application <span class="comment">#框架核心文件夹</span></span><br><span class="line">      ├─ controllers</span><br><span class="line">      ├─ library</span><br><span class="line">      ├─ models</span><br><span class="line">      ├─ modules</span><br><span class="line">      ├─ plugins</span><br><span class="line">      └─ views</span><br><span class="line">├─ conf <span class="comment">#配置参数文件夹</span></span><br><span class="line">      └─ application.ini</span><br><span class="line">├─ public <span class="comment">#入口文件夹</span></span><br><span class="line">      ├─ css</span><br><span class="line">      ├─ img</span><br><span class="line">      ├─ js</span><br><span class="line">      ├─ .htaccess <span class="comment">#apache伪静态</span></span><br><span class="line">      └─ index.php <span class="comment">#入口文件</span></span><br></pre></td></tr></table></figure>
+
+<p>其中的.htaccess文件在用apache的时候设置，当然也可以直接在apache目录中的conf文件添加相应配置也可以。</p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/notes/">notes</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/php/">php</a><a href="/tags/yaf/">yaf</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+    </main>
+
+    <footer class="site-footer">
+    <hr/>
+    <p><a target="_blank" href="http://info.flagcounter.com/JB7l"><img src="http://s09.flagcounter.com/mini/JB7l/bg_F3FFD1/txt_08043D/border_8A8A8A/flags_1/" alt="Flag Counter" border="0"></a></p>
+    <p id="footer-important-time"></p>
+    <p>
+      Explanation: Vi estas mia vivo … &&
+      Friends: <a target="_blank" href="http://www.linyiit.cn/">张老师</a> |
+      <a target="_blank" href="http://www.mazhaowei.com/">马兆伟</a> |
+      <a target="_blank" href="http://www.z70.net/">李&nbsp;&nbsp;&nbsp;杰</a>
+    </p>
+    <small class="copyright">
+    
+    Copyright &copy; 2014- 2020 yangxiangming
+    
+    </small>
+
+</footer>
+
+<script type="text/javascript">
+(function(){
+  //时间
+  var _systemTime = new Date();
+  var _y = _systemTime.getFullYear();
+  var _loveTime = getTimeCount('2012-06-03'), _lifeTime = getTimeCount('2013-06-10'), _licensingTime = getTimeCount('2016-04-13'), _getMarriedTime = getTimeCount('2016-07-19'), _getBornTime = getTimeCount('2017-06-01');
+  document.getElementById('footer-important-time').innerHTML = ('Love Time: <a>'+_loveTime+'</a> day | Life Time: <a>'+_lifeTime+'</a> day | Licensing Time: <a>'+_licensingTime+'</a> day | Get Married Time: <a>'+_getMarriedTime+'</a> day | Get Born Time: <a>'+_getBornTime+'</a> day');
+}());
+
+/**
+ *
+ * @param _t 开始时间
+ * @returns {Number} 天数
+ */
+function getTimeCount(_t){
+  var _system = new Date();
+  var _tmpTime = new Date(_t.replace(/-/g, "/"));
+  var _count =  _system.getTime()-_tmpTime.getTime();
+  return parseInt(_count/(1000*60*60*24));
+}
+</script>
+
+    
+  </div>
+</div>
+</body>
+</html>

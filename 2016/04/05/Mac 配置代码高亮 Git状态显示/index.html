@@ -1,0 +1,179 @@
+<!DOCTYPE HTML>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>Mac 配置代码高亮 Git状态显示 | YANGXIANGMING</title>
+
+  
+  <meta name="author" content="yangxiangming">
+  
+
+  
+  <meta name="description" content="Vi estas mia vivo …">
+  
+
+  
+  
+  <meta name="keywords" content="mac,os x,git,代码提示高亮">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="Mac 配置代码高亮 Git状态显示">
+
+  <meta property="og:site_name" content="YANGXIANGMING">
+
+  
+  <meta property="og:image" content="/favicon.ico">
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="YANGXIANGMING" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">YANGXIANGMING<sup>Beta 1.0.0</sup></a>
+    </h1>
+    <p class="site-description"></p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">主页</a></li>
+      
+        <li><a href="/archives">归档</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>Mac 配置代码高亮 Git状态显示</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/04/05/Mac 配置代码高亮 Git状态显示/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-04-05T02:10:29.000Z">
+          Apr 5 2016
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>Mac 一个为开发者量身定做的笔记本，相信你已经装好了<code>iTerm2</code>了，打开你的<code>iTerm2</code>开始我们的配置。</p>
+<a id="more"></a>
+<p>首先进入到Home到目录一般默认打开的都是Home，如果不是输入 cd ~ 回车即可，编辑Home目录下的 .bash_profile 编辑 vim .bash_profile 配置代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#&lt;Git branch status&gt;</span></span><br><span class="line"><span class="keyword">function</span> git_status &#123;</span><br><span class="line">  <span class="built_in">local</span> unknown untracked stash clean ahead behind staged dirty diverged</span><br><span class="line">  unknown=<span class="string">'0;34'</span> <span class="comment"># blue</span></span><br><span class="line">  untracked=<span class="string">'0;32'</span> <span class="comment"># green</span></span><br><span class="line">  stash=<span class="string">'0;32'</span> <span class="comment"># green</span></span><br><span class="line">  clean=<span class="string">'0;32'</span> <span class="comment"># green</span></span><br><span class="line">  ahead=<span class="string">'0;33'</span> <span class="comment"># yellow</span></span><br><span class="line">  behind=<span class="string">'0;33'</span> <span class="comment"># yellow</span></span><br><span class="line">  staged=<span class="string">'0;96'</span> <span class="comment"># cyan</span></span><br><span class="line">  dirty=<span class="string">'0;31'</span> <span class="comment"># red</span></span><br><span class="line">  diverged=<span class="string">'0;31'</span> <span class="comment"># red</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> [[ <span class="variable">$TERM</span> = *256color ]]; <span class="keyword">then</span></span><br><span class="line">    unknown=<span class="string">'38;5;20'</span> <span class="comment"># dark blue</span></span><br><span class="line">    untracked=<span class="string">'38;5;76'</span> <span class="comment"># mid lime-green</span></span><br><span class="line">    stash=<span class="string">'38;5;76'</span> <span class="comment"># mid lime-green</span></span><br><span class="line">    clean=<span class="string">'38;5;82'</span> <span class="comment"># brighter green</span></span><br><span class="line">    ahead=<span class="string">'38;5;226'</span> <span class="comment"># bright yellow</span></span><br><span class="line">    behind=<span class="string">'38;5;142'</span> <span class="comment"># darker yellow-orange</span></span><br><span class="line">    staged=<span class="string">'38;5;214'</span> <span class="comment"># orangey yellow</span></span><br><span class="line">    dirty=<span class="string">'38;5;202'</span> <span class="comment"># orange</span></span><br><span class="line">    diverged=<span class="string">'38;5;196'</span> <span class="comment"># red</span></span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">  branch=$(git rev-parse --abbrev-ref HEAD 2&gt;/dev/null)</span><br><span class="line">  <span class="keyword">if</span> [[ -n <span class="string">"<span class="variable">$branch</span>"</span> ]]; <span class="keyword">then</span></span><br><span class="line">    <span class="keyword">if</span> [[ <span class="string">"<span class="variable">$branch</span>"</span> == <span class="string">'HEAD'</span> ]]; <span class="keyword">then</span></span><br><span class="line">      branch=$(git rev-parse --short HEAD 2&gt;/dev/null)</span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">    git_status=$(git status 2&gt; /dev/null)</span><br><span class="line">    <span class="comment"># If nothing changes the color, we can spot unhandled cases.</span></span><br><span class="line">    color=<span class="variable">$unknown</span></span><br><span class="line">    <span class="keyword">if</span> [[ <span class="variable">$git_status</span> =~ <span class="string">'Untracked files'</span> ]]; <span class="keyword">then</span></span><br><span class="line">      color=<span class="variable">$untracked</span></span><br><span class="line">      branch=<span class="string">"<span class="variable">$&#123;branch&#125;</span>+"</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">    <span class="keyword">if</span> git stash show &amp;&gt;/dev/null; <span class="keyword">then</span></span><br><span class="line">      color=<span class="variable">$stash</span></span><br><span class="line">      branch=<span class="string">"<span class="variable">$&#123;branch&#125;</span>*"</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">    <span class="keyword">if</span> [[ <span class="variable">$git_status</span> =~ <span class="string">'working directory clean'</span> ]]; <span class="keyword">then</span></span><br><span class="line">      color=<span class="variable">$clean</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">    <span class="keyword">if</span> [[ <span class="variable">$git_status</span> =~ <span class="string">'Your branch is ahead'</span> ]]; <span class="keyword">then</span></span><br><span class="line">      color=<span class="variable">$ahead</span></span><br><span class="line">      branch=<span class="string">"<span class="variable">$&#123;branch&#125;</span>"</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">    <span class="keyword">if</span> [[ <span class="variable">$git_status</span> =~ <span class="string">'Your branch is behind'</span> ]]; <span class="keyword">then</span></span><br><span class="line">      color=<span class="variable">$behind</span></span><br><span class="line">      branch=<span class="string">"<span class="variable">$&#123;branch&#125;</span>"</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">    <span class="keyword">if</span> [[ <span class="variable">$git_status</span> =~ <span class="string">'Changes to be committed'</span> ]]; <span class="keyword">then</span></span><br><span class="line">      color=<span class="variable">$staged</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">    <span class="keyword">if</span> [[ <span class="variable">$git_status</span> =~ <span class="string">'Changed but not updated'</span> ||</span><br><span class="line">          <span class="variable">$git_status</span> =~ <span class="string">'Changes not staged'</span>      ||</span><br><span class="line">          <span class="variable">$git_status</span> =~ <span class="string">'Unmerged paths'</span> ]]; <span class="keyword">then</span></span><br><span class="line">      color=<span class="variable">$dirty</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">    <span class="keyword">if</span> [[ <span class="variable">$git_status</span> =~ <span class="string">'Your branch'</span>.+diverged ]]; <span class="keyword">then</span></span><br><span class="line">      color=<span class="variable">$diverged</span></span><br><span class="line">      branch=<span class="string">"<span class="variable">$&#123;branch&#125;</span>!"</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">    <span class="built_in">printf</span> <span class="string">"\033[%sm%s\033[0m"</span> <span class="string">"<span class="variable">$color</span>"</span> <span class="string">"(<span class="variable">$branch</span>)"</span></span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line">  <span class="built_in">return</span> 0</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#&lt;bles colorin the terminal bash shell export&gt;</span></span><br><span class="line"><span class="built_in">export</span> CLICOLOR=1</span><br><span class="line"></span><br><span class="line"><span class="comment">#&lt;sets up thecolor scheme for list export&gt;</span></span><br><span class="line"><span class="built_in">export</span> LSCOLORS=gxfxcxdxbxegedabagacad</span><br><span class="line"></span><br><span class="line"><span class="comment">#&lt;sets up theprompt color (currently a green similar to linux terminal)&gt;</span></span><br><span class="line"><span class="built_in">export</span> PS1=<span class="string">'\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;36m\]\w\[\033[01;31m\]$(git_status)\[\033[0m\]\$ '</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#&lt;enables colorfor iTerm&gt;</span></span><br><span class="line"><span class="built_in">export</span> TERM=xterm-256color</span><br></pre></td></tr></table></figure>
+
+<p>复制粘贴退出保存，然后执行一下 source .bash_profile 回车即可。然后我们在来开启代码高亮开关，编辑 vim .vimrc 开启配置项</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#&lt;代码高亮开启&gt;</span></span><br><span class="line">syntax on</span><br><span class="line"></span><br><span class="line"><span class="comment">#&lt;文件内容行号&gt;</span></span><br><span class="line"><span class="built_in">set</span> nu</span><br></pre></td></tr></table></figure>
+
+<p>保存退出就可以了。为了确保下次开机命令依然有效，执行如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"[ -r ~/.bashrc ] &amp;&amp; source ~/.bashrc"</span> &gt;&gt; .bash_profile</span><br></pre></td></tr></table></figure>
+
+<p>退出iTerm2重新打开就可以了，开始你的屌屌屌命令行高亮之旅吧！</p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/notes/">notes</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/mac/">mac</a><a href="/tags/os-x/">os x</a><a href="/tags/git/">git</a><a href="/tags/代码提示高亮/">代码提示高亮</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+    </main>
+
+    <footer class="site-footer">
+    <hr/>
+    <p><a target="_blank" href="http://info.flagcounter.com/JB7l"><img src="http://s09.flagcounter.com/mini/JB7l/bg_F3FFD1/txt_08043D/border_8A8A8A/flags_1/" alt="Flag Counter" border="0"></a></p>
+    <p id="footer-important-time"></p>
+    <p>
+      Explanation: Vi estas mia vivo … &&
+      Friends: <a target="_blank" href="http://www.linyiit.cn/">张老师</a> |
+      <a target="_blank" href="http://www.mazhaowei.com/">马兆伟</a> |
+      <a target="_blank" href="http://www.z70.net/">李&nbsp;&nbsp;&nbsp;杰</a>
+    </p>
+    <small class="copyright">
+    
+    Copyright &copy; 2014- 2020 yangxiangming
+    
+    </small>
+
+</footer>
+
+<script type="text/javascript">
+(function(){
+  //时间
+  var _systemTime = new Date();
+  var _y = _systemTime.getFullYear();
+  var _loveTime = getTimeCount('2012-06-03'), _lifeTime = getTimeCount('2013-06-10'), _licensingTime = getTimeCount('2016-04-13'), _getMarriedTime = getTimeCount('2016-07-19'), _getBornTime = getTimeCount('2017-06-01');
+  document.getElementById('footer-important-time').innerHTML = ('Love Time: <a>'+_loveTime+'</a> day | Life Time: <a>'+_lifeTime+'</a> day | Licensing Time: <a>'+_licensingTime+'</a> day | Get Married Time: <a>'+_getMarriedTime+'</a> day | Get Born Time: <a>'+_getBornTime+'</a> day');
+}());
+
+/**
+ *
+ * @param _t 开始时间
+ * @returns {Number} 天数
+ */
+function getTimeCount(_t){
+  var _system = new Date();
+  var _tmpTime = new Date(_t.replace(/-/g, "/"));
+  var _count =  _system.getTime()-_tmpTime.getTime();
+  return parseInt(_count/(1000*60*60*24));
+}
+</script>
+
+    
+  </div>
+</div>
+</body>
+</html>

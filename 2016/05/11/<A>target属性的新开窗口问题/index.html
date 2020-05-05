@@ -1,0 +1,175 @@
+<!DOCTYPE HTML>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>&lt;A&gt;target属性的新开窗口问题 | YANGXIANGMING</title>
+
+  
+  <meta name="author" content="yangxiangming">
+  
+
+  
+  <meta name="description" content="Vi estas mia vivo …">
+  
+
+  
+  
+  <meta name="keywords" content="html,a">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="&lt;A&gt;target属性的新开窗口问题">
+
+  <meta property="og:site_name" content="YANGXIANGMING">
+
+  
+  <meta property="og:image" content="/favicon.ico">
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="YANGXIANGMING" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">YANGXIANGMING<sup>Beta 1.0.0</sup></a>
+    </h1>
+    <p class="site-description"></p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">主页</a></li>
+      
+        <li><a href="/archives">归档</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>&lt;A&gt;target属性的新开窗口问题</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/05/11/<A>target属性的新开窗口问题/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-05-11T08:18:29.000Z">
+          May 11 2016
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>不管在PC端还是在Wap端浏涉及到的A连接中的<code>target</code>属性(规定在何处打开<code>href</code>连接)，以下特别说明新窗口打开问题(<code>target＝”_blank”</code>)。</p>
+<a id="more"></a>
+<ul>
+<li>target＝”_blank” 正常状态新窗口打开，每次来点击都会新窗口打开。</li>
+<li>没有下划线或者前面或者后面有个空格，这种时候你再来点击就会出现问题，当你第一次点击该连接可以正常新窗口打开，但是当你回到该页面再来点击，就不会在新窗口打开了，只会去刷新你第一次点击打开过的那个窗口。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">target</span>=<span class="string">"_blank"</span> <span class="attr">href</span>=<span class="string">"http://www.yangxiangming.com/"</span>&gt;</span>Target develop<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">target</span>=<span class="string">" _blank"</span> <span class="attr">href</span>=<span class="string">"http://www.yangxiangming.com/"</span>&gt;</span>Target develop<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">target</span>=<span class="string">"_blank "</span> <span class="attr">href</span>=<span class="string">"http://www.yangxiangming.com/"</span>&gt;</span>Target develop<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">target</span>=<span class="string">"blank"</span> <span class="attr">href</span>=<span class="string">"http://www.yangxiangming.com/"</span>&gt;</span>Target develop<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/notes/">notes</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/html/">html</a><a href="/tags/a/">a</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+    </main>
+
+    <footer class="site-footer">
+    <hr/>
+    <p><a target="_blank" href="http://info.flagcounter.com/JB7l"><img src="http://s09.flagcounter.com/mini/JB7l/bg_F3FFD1/txt_08043D/border_8A8A8A/flags_1/" alt="Flag Counter" border="0"></a></p>
+    <p id="footer-important-time"></p>
+    <p>
+      Explanation: Vi estas mia vivo … &&
+      Friends: <a target="_blank" href="http://www.linyiit.cn/">张老师</a> |
+      <a target="_blank" href="http://www.mazhaowei.com/">马兆伟</a> |
+      <a target="_blank" href="http://www.z70.net/">李&nbsp;&nbsp;&nbsp;杰</a>
+    </p>
+    <small class="copyright">
+    
+    Copyright &copy; 2014- 2020 yangxiangming
+    
+    </small>
+
+</footer>
+
+<script type="text/javascript">
+(function(){
+  //时间
+  var _systemTime = new Date();
+  var _y = _systemTime.getFullYear();
+  var _loveTime = getTimeCount('2012-06-03'), _lifeTime = getTimeCount('2013-06-10'), _licensingTime = getTimeCount('2016-04-13'), _getMarriedTime = getTimeCount('2016-07-19'), _getBornTime = getTimeCount('2017-06-01');
+  document.getElementById('footer-important-time').innerHTML = ('Love Time: <a>'+_loveTime+'</a> day | Life Time: <a>'+_lifeTime+'</a> day | Licensing Time: <a>'+_licensingTime+'</a> day | Get Married Time: <a>'+_getMarriedTime+'</a> day | Get Born Time: <a>'+_getBornTime+'</a> day');
+}());
+
+/**
+ *
+ * @param _t 开始时间
+ * @returns {Number} 天数
+ */
+function getTimeCount(_t){
+  var _system = new Date();
+  var _tmpTime = new Date(_t.replace(/-/g, "/"));
+  var _count =  _system.getTime()-_tmpTime.getTime();
+  return parseInt(_count/(1000*60*60*24));
+}
+</script>
+
+    
+  </div>
+</div>
+</body>
+</html>

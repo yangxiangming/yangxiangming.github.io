@@ -1,0 +1,225 @@
+<!DOCTYPE HTML>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>Git高大上的版本控制器 | YANGXIANGMING</title>
+
+  
+  <meta name="author" content="yangxiangming">
+  
+
+  
+  <meta name="description" content="Vi estas mia vivo …">
+  
+
+  
+  
+  <meta name="keywords" content="git">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="Git高大上的版本控制器">
+
+  <meta property="og:site_name" content="YANGXIANGMING">
+
+  
+  <meta property="og:image" content="/favicon.ico">
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="YANGXIANGMING" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">YANGXIANGMING<sup>Beta 1.0.0</sup></a>
+    </h1>
+    <p class="site-description"></p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">主页</a></li>
+      
+        <li><a href="/archives">归档</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>Git高大上的版本控制器</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2015/09/22/Git高大上的版本控制器/" rel="bookmark">
+        <time class="entry-date published" datetime="2015-09-22T02:32:08.000Z">
+          Sep 22 2015
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p><code>Git</code>是什么？<code>Git</code>能干啥？——<code>Git</code>是很牛叉很牛叉的分布式版本控制系统，高效、灵活而且还免费。说白了就是高端大气上档次！是管理项目的不二选择……赶紧搞起来吧！！！</p>
+<a id="more"></a>
+<h4 id="Git安装"><a href="#Git安装" class="headerlink" title="Git安装"></a>Git安装</h4><ul>
+<li>Window系统安装直接从 <a href="https://git-for-windows.github.io/" target="_blank" rel="noopener">GitBash</a> 下载，按默认选项安装即可。</li>
+<li>Mac OS X系统安装可以通过homebrew安装Git，参考文档：<a href="http://brew.sh/" target="_blank" rel="noopener">brew</a></li>
+</ul>
+<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><ul>
+<li>git config –global 配置本地Git库</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#&lt;你的用户名&gt;</span></span><br><span class="line">$ git config --global user.name <span class="string">"Your Name"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#&lt;你所用邮箱&gt;</span></span><br><span class="line">$ git config --global user.email <span class="string">"Your@Email.com"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#&lt;依次执行配置用户名和用户邮箱之后，本地Git仓库都会使用这个配置&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建非对称RSA加密SSH Key</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C <span class="string">"Your@Email.com"</span></span><br><span class="line"><span class="comment">#&lt;执行命令后会在电脑用户主目录下生成.ssh文件，有id_rsa和id_rsa.pub两个文件不管你用的是GitHub还是用了自己搭配的Git服务器，打</span></span><br><span class="line"><span class="comment">#开id_rsa.pub公钥全选复制，粘贴到Git服务器上面添加Add SSH Key的地方保存，这样本地Git和服务器Git关联起来了。&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#&lt;检测连接是否成功&gt;</span></span><br><span class="line">$ ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+
+<h4 id="本地-lt-gt-远程"><a href="#本地-lt-gt-远程" class="headerlink" title="本地&lt;=&gt;远程"></a>本地&lt;=&gt;远程</h4><ul>
+<li>git clone 从远程主机克隆一个版本库到本地</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> &lt;版本库的网址&gt;</span><br><span class="line">$ git <span class="built_in">clone</span> &lt;版本库的网址&gt; &lt;本地目录名&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">#&lt;例如&gt;</span></span><br><span class="line">$ git <span class="built_in">clone</span> git@github.com:example/example.git <span class="comment">#&lt;这样会在本地主机生成一个目录，与远程主机的版本库同名&gt;</span></span><br><span class="line"></span><br><span class="line">$ git <span class="built_in">clone</span> git@github.com:example/example.git localExample <span class="comment">#&lt;如果这样执行，结果本地版本库和远程的就是不同目录名了&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#&lt;git clone支持多种协议，除了SSH)以外，还支持HTTPS、Git、本地文件协议等&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>git fetch 将某个远程主机的更新取回到本地</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git fetch &lt;远程主机名&gt;</span><br><span class="line">$ git fetch &lt;远程主机名&gt; &lt;分支名&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">#&lt;例如&gt;</span></span><br><span class="line">$ git fetch origin <span class="comment">#&lt;将某个远程主机的更新全部到本地，默认情况下是取回所有分支&gt;</span></span><br><span class="line"></span><br><span class="line">$ git fetch origin example <span class="comment">#&lt;指定分支更新到本地，origin主机的example分支&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#&lt;更新到本地之后，可以执行merge合并到本地分支||执行checkout创建新分支都可以&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>git pull 取回远程主机某个分支的更新与本地的指定分支合并</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git pull &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">#&lt;例如&gt;</span></span><br><span class="line">$ git pull origin example:example <span class="comment">#&lt;获取远程origin主机的example分支，与本地的example分支合并。实质上这等同于先执行git fetch再</span></span><br><span class="line"><span class="comment">#做git merge合并&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>git push 将本地分支的更新推送到远程主机</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">#&lt;例如&gt;</span></span><br><span class="line">$ git push origin localExample:example <span class="comment">#&lt;将本地的localExample分支推送到origin主机的example分支&gt;</span></span><br><span class="line"></span><br><span class="line">$ git push origin example <span class="comment">#&lt;如果本地分支名和远程分支名同名可以省略远程分支名。将本地的example分支推送到远程origin主机的</span></span><br><span class="line"><span class="comment">#example分支&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在我们使用<code>git</code>从远程主机克隆一个版本库的时候，如果克隆到本地的文件夹是空则不会有任何问题，那么当我们克隆到本地文件夹非空时则就会出现错误信息了，并且<code>clone</code>不成功</p>
+<p><code>clone</code>到本地不为空的文件夹下的时候会出现这样的提示，例如</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yangxiangming@yangxiangmingdeMacBook-Pro:~/workstation$ git <span class="built_in">clone</span> git@git.coding.net:yangxiangming/yangxiangming.github.io.git yangxiangming.github.io/</span><br><span class="line">fatal: destination path <span class="string">'yangxiangming.github.io'</span> already exists and is not an empty directory.</span><br></pre></td></tr></table></figure>
+
+<p>那么我们怎么解决这种问题，并且使之成功呢！如下操作步骤详解</p>
+<p>先进入你想<code>git clone</code>到本地的非空文件夹下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yangxiangming@yangxiangmingdeMacBook-Pro:~$ <span class="built_in">cd</span> workstation/yangxiangming.github.io/</span><br></pre></td></tr></table></figure>
+
+<p>然后执行<code>git clone</code>到一个临时文件tmp</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">yangxiangming@yangxiangmingdeMacBook-Pro:~/workstation/yangxiangming.github.io$ git <span class="built_in">clone</span> --no-checkout git@git.github.net:yangxiangming/yangxiangming.github.io.git tmp</span><br><span class="line">Cloning into <span class="string">'tmp'</span>...</span><br><span class="line">Warning: Permanently added the RSA host key <span class="keyword">for</span> IP address <span class="string">'60.174.240.191'</span> to the list of known hosts.</span><br><span class="line">remote: Counting objects: 3, <span class="keyword">done</span>.</span><br><span class="line">remote: Total 3 (delta 0), reused 0 (delta 0)</span><br><span class="line">Receiving objects: 100% (3/3), <span class="keyword">done</span>.</span><br><span class="line">Checking connectivity... <span class="keyword">done</span>.</span><br></pre></td></tr></table></figure>
+
+<p>在把<code>git clone</code>下来的<code>.git</code>移动到当前文件夹下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yangxiangming@yangxiangmingdeMacBook-Pro:~/workstation/yangxiangming.github.io$ mv tmp/.git .</span><br></pre></td></tr></table></figure>
+
+<p>这个时候就可以把第一步<code>git clone</code>的临时文件tmp删除掉了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yangxiangming@yangxiangmingdeMacBook-Pro:~/workstation/yangxiangming.github.io(master+)$ sudo rm -rf tmp</span><br></pre></td></tr></table></figure>
+
+<p>最后删除<code>git</code>操作痕迹，撤销当前<code>head</code>的内容并重置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yangxiangming@yangxiangmingdeMacBook-Pro:~/workstation/yangxiangming.github.io(master+)$ git reset --hard HEAD</span><br><span class="line">HEAD is now at 8f23e29 Initial commit</span><br><span class="line">yangxiangming@yangxiangmingdeMacBook-Pro:~/workstation/yangxiangming.github.io(master+)$</span><br></pre></td></tr></table></figure>
+
+<p>如上操作就可以顺利解决<code>git clone</code>不能克隆非空文件夹的问题了，开开心心用起来了，哇哦</p>
+<p>Git命令直列举了一部分，还有一些<code>git merge</code>、<code>git status</code>、<code>git log</code>…常用命令等等，具体请参考官方手册<a href="https://git-scm.com/book/zh/v2" target="_blank" rel="noopener">GitBook</a></p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/notes/">notes</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/git/">git</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+    </main>
+
+    <footer class="site-footer">
+    <hr/>
+    <p><a target="_blank" href="http://info.flagcounter.com/JB7l"><img src="http://s09.flagcounter.com/mini/JB7l/bg_F3FFD1/txt_08043D/border_8A8A8A/flags_1/" alt="Flag Counter" border="0"></a></p>
+    <p id="footer-important-time"></p>
+    <p>
+      Explanation: Vi estas mia vivo … &&
+      Friends: <a target="_blank" href="http://www.linyiit.cn/">张老师</a> |
+      <a target="_blank" href="http://www.mazhaowei.com/">马兆伟</a> |
+      <a target="_blank" href="http://www.z70.net/">李&nbsp;&nbsp;&nbsp;杰</a>
+    </p>
+    <small class="copyright">
+    
+    Copyright &copy; 2014- 2020 yangxiangming
+    
+    </small>
+
+</footer>
+
+<script type="text/javascript">
+(function(){
+  //时间
+  var _systemTime = new Date();
+  var _y = _systemTime.getFullYear();
+  var _loveTime = getTimeCount('2012-06-03'), _lifeTime = getTimeCount('2013-06-10'), _licensingTime = getTimeCount('2016-04-13'), _getMarriedTime = getTimeCount('2016-07-19'), _getBornTime = getTimeCount('2017-06-01');
+  document.getElementById('footer-important-time').innerHTML = ('Love Time: <a>'+_loveTime+'</a> day | Life Time: <a>'+_lifeTime+'</a> day | Licensing Time: <a>'+_licensingTime+'</a> day | Get Married Time: <a>'+_getMarriedTime+'</a> day | Get Born Time: <a>'+_getBornTime+'</a> day');
+}());
+
+/**
+ *
+ * @param _t 开始时间
+ * @returns {Number} 天数
+ */
+function getTimeCount(_t){
+  var _system = new Date();
+  var _tmpTime = new Date(_t.replace(/-/g, "/"));
+  var _count =  _system.getTime()-_tmpTime.getTime();
+  return parseInt(_count/(1000*60*60*24));
+}
+</script>
+
+    
+  </div>
+</div>
+</body>
+</html>

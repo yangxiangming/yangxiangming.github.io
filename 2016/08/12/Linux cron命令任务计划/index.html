@@ -1,0 +1,192 @@
+<!DOCTYPE HTML>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>Linux cron命令任务计划 | YANGXIANGMING</title>
+
+  
+  <meta name="author" content="yangxiangming">
+  
+
+  
+  <meta name="description" content="Vi estas mia vivo …">
+  
+
+  
+  
+  <meta name="keywords" content="linux,cron">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="Linux cron命令任务计划">
+
+  <meta property="og:site_name" content="YANGXIANGMING">
+
+  
+  <meta property="og:image" content="/favicon.ico">
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="YANGXIANGMING" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">YANGXIANGMING<sup>Beta 1.0.0</sup></a>
+    </h1>
+    <p class="site-description"></p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">主页</a></li>
+      
+        <li><a href="/archives">归档</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>Linux cron命令任务计划</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/08/12/Linux cron命令任务计划/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-08-12T06:06:05.000Z">
+          Aug 12 2016
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p><code>Cron</code>是一个强大的任务计划程序，支持 <code>Unix/Linux</code> 等其他的操作系统。它可以通过设定的时间运行命令实现任务脚本自动化，有效提高开发人员以及系统运维人员的工作效率</p>
+<a id="more"></a>
+<p><code>cron</code> 是一个可以用来根据时间、日期、月份、星期的组合来调度对重复任务的执行的守护进程，要使用 <code>cron</code> 服务，你必须安装了 <code>vixie-cron RPM</code> 软件包，而且必须在运行 <code>crond</code> 服务。</p>
+<ul>
+<li>要判定该软件包是否已安装，使用 <code>rpm -q vixie-cron</code> 命令。</li>
+<li>要判定该服务是否在运行，使用 <code>/sbin/service crond status</code> 命令。</li>
+</ul>
+<p><code>Cron</code> 的主配置文件是 <code>/etc/crontab</code>，它的格式是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">minute  hour    day   month   dayofweek <span class="built_in">command</span></span><br><span class="line">&lt;分钟&gt;  &lt;小时&gt;  &lt;日&gt;  &lt;月份&gt;  &lt;星期&gt;  &lt;命令&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>minute #分钟，从 0 到 59 之间的任何整数                                                                     </li>
+<li>hour #小时，从 0 到 23 之间的任何整数                                                                     </li>
+<li>day #日期，从 1 到 31 之间的任何整数（如果指定了月份，必须是该月份的有效日期）                           </li>
+<li>month #月份，从 1 到 12 之间的任何整数（或使用月份的英文简写如 <code>jan、feb</code> 等等）                           </li>
+<li>dayofweek #星期，从 0 到 7 之间的任何整数，这里的 0 或 7 代表星期日（或使用星期的英文简写如 <code>sun、mon</code> 等等）  </li>
+<li>command #要执行的命令（命令可以是 <code>ls /proc &gt;&gt; /tmp/proc</code> 之类的命令，也可以是执行你自行编写的脚本的命令。）</li>
+</ul>
+<p>要启动 <code>cron</code> 服务，使用 <code>/sbin/service crond start</code> 命令。要停止该服务，使用 <code>/sbin/service crond stop</code> 命令。</p>
+<p><code>Crontab</code>常用命令操作</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">crontab file <span class="comment">#用指定的文件替代目前的crontab。</span></span><br><span class="line">crontab- <span class="comment">#用标准输入替代目前的crontab.</span></span><br><span class="line">crontab-1 <span class="comment">#列出用户目前的crontab.</span></span><br><span class="line">crontab<span class="_">-e</span> <span class="comment">#编辑用户目前的crontab.</span></span><br><span class="line">crontab<span class="_">-d</span> <span class="comment">#删除用户目前的crontab.</span></span><br><span class="line">crontab-c dir- <span class="comment">#指定crontab的目录</span></span><br></pre></td></tr></table></figure>
+
+<p><code>Crontab</code>任务简单事例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#每天凌晨0点执行</span><br><span class="line">00 00 * * * /server/php7.02/php /htdocs/example.web.com/action/post/push.php</span><br><span class="line"></span><br><span class="line">#每10分钟执行一次</span><br><span class="line">*/10 * * * * /server/php7.02/php /htdocs/example.web.com/action/post/total.php</span><br><span class="line"></span><br><span class="line">#每小时执行</span><br><span class="line">0 * * * * /server/php7.02/php /htdocs/example.web.com/action/post/example.php</span><br><span class="line"></span><br><span class="line">#每天执行</span><br><span class="line">0 0 * * * /server/php7.02/php /htdocs/example.web.com/action/post/example.php</span><br><span class="line"></span><br><span class="line">#每周执行</span><br><span class="line">0 0 * * 0 /server/php7.02/php /htdocs/example.web.com/action/post/example.php</span><br><span class="line"></span><br><span class="line">#每月执行</span><br><span class="line">0 0 1 * * /server/php7.02/php /htdocs/example.web.com/action/post/example.php</span><br><span class="line"></span><br><span class="line">#每年执行</span><br><span class="line">0 0 1 1 * /server/php7.02/php /htdocs/example.web.com/action/post/example.php</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/notes/">notes</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/linux/">linux</a><a href="/tags/cron/">cron</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+    </main>
+
+    <footer class="site-footer">
+    <hr/>
+    <p><a target="_blank" href="http://info.flagcounter.com/JB7l"><img src="http://s09.flagcounter.com/mini/JB7l/bg_F3FFD1/txt_08043D/border_8A8A8A/flags_1/" alt="Flag Counter" border="0"></a></p>
+    <p id="footer-important-time"></p>
+    <p>
+      Explanation: Vi estas mia vivo … &&
+      Friends: <a target="_blank" href="http://www.linyiit.cn/">张老师</a> |
+      <a target="_blank" href="http://www.mazhaowei.com/">马兆伟</a> |
+      <a target="_blank" href="http://www.z70.net/">李&nbsp;&nbsp;&nbsp;杰</a>
+    </p>
+    <small class="copyright">
+    
+    Copyright &copy; 2014- 2020 yangxiangming
+    
+    </small>
+
+</footer>
+
+<script type="text/javascript">
+(function(){
+  //时间
+  var _systemTime = new Date();
+  var _y = _systemTime.getFullYear();
+  var _loveTime = getTimeCount('2012-06-03'), _lifeTime = getTimeCount('2013-06-10'), _licensingTime = getTimeCount('2016-04-13'), _getMarriedTime = getTimeCount('2016-07-19'), _getBornTime = getTimeCount('2017-06-01');
+  document.getElementById('footer-important-time').innerHTML = ('Love Time: <a>'+_loveTime+'</a> day | Life Time: <a>'+_lifeTime+'</a> day | Licensing Time: <a>'+_licensingTime+'</a> day | Get Married Time: <a>'+_getMarriedTime+'</a> day | Get Born Time: <a>'+_getBornTime+'</a> day');
+}());
+
+/**
+ *
+ * @param _t 开始时间
+ * @returns {Number} 天数
+ */
+function getTimeCount(_t){
+  var _system = new Date();
+  var _tmpTime = new Date(_t.replace(/-/g, "/"));
+  var _count =  _system.getTime()-_tmpTime.getTime();
+  return parseInt(_count/(1000*60*60*24));
+}
+</script>
+
+    
+  </div>
+</div>
+</body>
+</html>

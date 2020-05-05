@@ -1,0 +1,172 @@
+<!DOCTYPE HTML>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>正则验证 | YANGXIANGMING</title>
+
+  
+  <meta name="author" content="yangxiangming">
+  
+
+  
+  <meta name="description" content="Vi estas mia vivo …">
+  
+
+  
+  
+  <meta name="keywords" content="Regular Expression,RE">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="正则验证">
+
+  <meta property="og:site_name" content="YANGXIANGMING">
+
+  
+  <meta property="og:image" content="/favicon.ico">
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="YANGXIANGMING" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">YANGXIANGMING<sup>Beta 1.0.0</sup></a>
+    </h1>
+    <p class="site-description"></p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">主页</a></li>
+      
+        <li><a href="/archives">归档</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>正则验证</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2018/01/28/正则验证/" rel="bookmark">
+        <time class="entry-date published" datetime="2018-01-28T02:15:35.000Z">
+          Jan 28 2018
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>正则表达式，又称正规表示式、正规表示法、正规表达式、规则表达式、常规表示法（英语：<code>Regular Expression</code>，在代码中常简写为<code>regex</code>、<code>regexp</code>或<code>RE</code>），是计算机科学的一个概念。</p>
+<a id="more"></a>
+<p>正则表达式使用单个字符串来描述、匹配一系列匹配某个句法规则的字符串。在很多文本编辑器里，正则表达式通常被用来检索、替换那些匹配某个模式的文本。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">;(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</span><br><span class="line">  $(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> _val = $(<span class="string">'input[name="sample"]'</span>).val();</span><br><span class="line">    <span class="comment">//中文验证</span></span><br><span class="line">    _reg = <span class="string">"/[\u4e00-\u9fa5]/"</span>;</span><br><span class="line">    <span class="keyword">if</span>(!_reg.test(_val))&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'非法字符'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//邮箱验证</span></span><br><span class="line">    _reg = <span class="string">"/\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]&#123;2,14&#125;/"</span>;</span><br><span class="line">    <span class="keyword">if</span>(!_reg.test(_val))&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'非法字符'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//URL验证</span></span><br><span class="line">    _reg = <span class="string">"/^((https|http|ftp|rtsp|mms)?:\/\/)[^\s]+/"</span>;</span><br><span class="line">    <span class="keyword">if</span>(!_reg.test(_val))&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'非法字符'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//手机验证</span></span><br><span class="line">    _reg = <span class="string">"/0?(13|14|15|16|17|18|19)[0-9]&#123;9&#125;/"</span>;</span><br><span class="line">    <span class="keyword">if</span>(!_reg.test(_val))&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'非法字符'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//整数验证</span></span><br><span class="line">    _reg = <span class="string">"/-?[1-9]\d*/"</span>;</span><br><span class="line">    <span class="keyword">if</span>(!_reg.test(_val))&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'非法字符'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//IP验证</span></span><br><span class="line">    _reg = <span class="string">"/(25[0-5]|2[0-4]\d|[0-1]\d&#123;2&#125;|[1-9]?\d)\.(25[0-5]|2[0-4]\d|[0-1]\d&#123;2&#125;|[1-9]?\d)\.(25[0-5]|2[0-4]\d|[0-1]\d&#123;2&#125;|[1-9]?\d)\.(25[0-5]|2[0-4]\d|[0-1]\d&#123;2&#125;|[1-9]?\d)/"</span>;</span><br><span class="line">    <span class="keyword">if</span>(!_reg.test(_val))&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'非法字符'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//身份证号验证</span></span><br><span class="line">    _reg = <span class="string">"/\d&#123;17&#125;[\d|x]|\d&#123;15&#125;/"</span>;</span><br><span class="line">    <span class="keyword">if</span>(!_reg.test(_val))&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'非法字符'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//日期验证</span></span><br><span class="line">    _reg = <span class="string">"/\d&#123;4&#125;(\-|\/|.)\d&#123;1,2&#125;\1\d&#123;1,2&#125;/"</span>;</span><br><span class="line">    <span class="keyword">if</span>(!_reg.test(_val))&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'非法字符'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//用户名验证</span></span><br><span class="line">    _reg = <span class="string">"/[A-Za-z0-9_\-\u4e00-\u9fa5]+/"</span>;</span><br><span class="line">    <span class="keyword">if</span>(!_reg.test(_val))&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'非法字符'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;(jQuery));</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/notes/">notes</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/Regular-Expression/">Regular Expression</a><a href="/tags/RE/">RE</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+    </main>
+
+    <footer class="site-footer">
+    <hr/>
+    <p><a target="_blank" href="http://info.flagcounter.com/JB7l"><img src="http://s09.flagcounter.com/mini/JB7l/bg_F3FFD1/txt_08043D/border_8A8A8A/flags_1/" alt="Flag Counter" border="0"></a></p>
+    <p id="footer-important-time"></p>
+    <p>
+      Explanation: Vi estas mia vivo … &&
+      Friends: <a target="_blank" href="http://www.linyiit.cn/">张老师</a> |
+      <a target="_blank" href="http://www.mazhaowei.com/">马兆伟</a> |
+      <a target="_blank" href="http://www.z70.net/">李&nbsp;&nbsp;&nbsp;杰</a>
+    </p>
+    <small class="copyright">
+    
+    Copyright &copy; 2014- 2020 yangxiangming
+    
+    </small>
+
+</footer>
+
+<script type="text/javascript">
+(function(){
+  //时间
+  var _systemTime = new Date();
+  var _y = _systemTime.getFullYear();
+  var _loveTime = getTimeCount('2012-06-03'), _lifeTime = getTimeCount('2013-06-10'), _licensingTime = getTimeCount('2016-04-13'), _getMarriedTime = getTimeCount('2016-07-19'), _getBornTime = getTimeCount('2017-06-01');
+  document.getElementById('footer-important-time').innerHTML = ('Love Time: <a>'+_loveTime+'</a> day | Life Time: <a>'+_lifeTime+'</a> day | Licensing Time: <a>'+_licensingTime+'</a> day | Get Married Time: <a>'+_getMarriedTime+'</a> day | Get Born Time: <a>'+_getBornTime+'</a> day');
+}());
+
+/**
+ *
+ * @param _t 开始时间
+ * @returns {Number} 天数
+ */
+function getTimeCount(_t){
+  var _system = new Date();
+  var _tmpTime = new Date(_t.replace(/-/g, "/"));
+  var _count =  _system.getTime()-_tmpTime.getTime();
+  return parseInt(_count/(1000*60*60*24));
+}
+</script>
+
+    
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE HTML>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>MongoDB操作&amp;错误处理机制 | YANGXIANGMING</title>
+
+  
+  <meta name="author" content="yangxiangming">
+  
+
+  
+  <meta name="description" content="Vi estas mia vivo …">
+  
+
+  
+  
+  <meta name="keywords" content="php,mognodb,thinkphp">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="MongoDB操作&amp;错误处理机制">
+
+  <meta property="og:site_name" content="YANGXIANGMING">
+
+  
+  <meta property="og:image" content="/favicon.ico">
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="YANGXIANGMING" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">YANGXIANGMING<sup>Beta 1.0.0</sup></a>
+    </h1>
+    <p class="site-description"></p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">主页</a></li>
+      
+        <li><a href="/archives">归档</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>MongoDB操作&amp;错误处理机制</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2015/09/10/ThinkPHP操作MongoDB&错误处理机制/" rel="bookmark">
+        <time class="entry-date published" datetime="2015-09-10T09:02:18.000Z">
+          Sep 10 2015
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p><code>Thinkphp</code>对<code>Mongdb</code>的支持依赖于<code>PHP</code>对<code>Mongodb</code>的支持，如果出现类似“系统不支持:<code>mongoClient</code>”的提示，说明你的<code>PHP</code>还没支持<code>Mongodb</code>扩展。配置就不介绍了<code>php.ini</code>……</p>
+<a id="more"></a>
+<p>Model文件：ExampleModel.class.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Description: MongoDB操作</span></span><br><span class="line"><span class="comment"> * Author: yangxiangming<span class="doctag">@live</span>.com</span></span><br><span class="line"><span class="comment"> * Date: 2015/9/9</span></span><br><span class="line"><span class="comment"> * Time: 13:35</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Bbsapi</span>\<span class="title">Model</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Think</span>\<span class="title">Model</span>\<span class="title">MongoModel</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExampleModel</span> <span class="keyword">extends</span> <span class="title">MongoModel</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Controller文件：ExampleController.class.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Description: MongoDB操作</span></span><br><span class="line"><span class="comment"> * Author: yangxiangming<span class="doctag">@live</span>.com</span></span><br><span class="line"><span class="comment"> * Date: 2015/9/9</span></span><br><span class="line"><span class="comment"> * Time: 13:51</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> \<span class="title">Controller</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Think</span>\<span class="title">Model</span>\<span class="title">ExampleModel</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExampleController</span> <span class="keyword">extends</span> <span class="title">ExampleModel</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">example</span><span class="params">()</span></span>&#123;</span><br><span class="line">        $where[<span class="string">'_id'</span>] = <span class="string">'54dd9116e4b061818991ac7d'</span>;</span><br><span class="line">        $model = D(<span class="string">'Example'</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">/** 查询 */</span></span><br><span class="line">        $result = $model-&gt;where($where)-&gt;select();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/** 添加 */</span></span><br><span class="line">        $data[<span class="string">'name'</span>] = <span class="string">'Example'</span>;</span><br><span class="line">        ……</span><br><span class="line">        $model-&gt;add($data);</span><br><span class="line"></span><br><span class="line">        <span class="comment">/** 更新 */</span></span><br><span class="line">        $data[<span class="string">'name'</span>] = <span class="string">'ExampleTmp'</span>;</span><br><span class="line">        ……</span><br><span class="line">        $model-&gt;where($where)-&gt;save($data);</span><br><span class="line"></span><br><span class="line">        <span class="comment">/** 删除 */</span></span><br><span class="line">        $model-&gt;where($where)-&gt;delete();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一切需要实践才知道可不可行，赶紧去试试吧！</p>
+<p><code>TP</code>框架开发项目的过程中经常会在调试中可能输入的URL有误导致浏览器报错，而非我们通常所设置的<code>404</code>那样人性化显示……<br>例如错误</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">:）非法操作:example</span><br><span class="line">错误位置</span><br><span class="line">FILE: /server/website/.../ThinkPHP/Library/Think/Controller.class.php 　LINE: 170</span><br><span class="line">TRACE</span><br><span class="line"><span class="comment">#0 /server/website/.../ThinkPHP/Library/Think/Controller.class.php(170): E('\xE9\x9D\x9E\xE6\xB3\x95\xE6\x93\x8D\xE4\xBD\x9C:exa...')</span></span><br><span class="line"><span class="comment">#1 [internal function]: Think\Controller-&gt;__call('example', '')</span></span><br><span class="line"><span class="comment">#2 /server/website/.../ThinkPHP/Library/Think/App.class.php(172): ReflectionMethod-&gt;invokeArgs(Object(Bbsapi\Controller\EmptyController), Array)</span></span><br><span class="line"><span class="comment">#3 /server/website/.../ThinkPHP/Library/Think/App.class.php(194): Think\App::exec()</span></span><br><span class="line"><span class="comment">#4 /server/website/.../ThinkPHP/Library/Think/Think.class.php(120): Think\App::run()</span></span><br><span class="line"><span class="comment">#5 /server/website/.../ThinkPHP/ThinkPHP.php(97): Think\Think::start()</span></span><br><span class="line"><span class="comment">#6 /server/website/.../index.php(37): require('/server/website...')</span></span><br><span class="line"><span class="comment">#7 &#123;main&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>这个时候可能我们开发不需要做什么处理，但是难保用户或者好奇心者给你乱输URL让你的项目报警，这就需要我们自己进行处理了。</p>
+<p>引导用户访问不存在的Controller或Function，在Controller文件创建EmptyController.class.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Description: 空操作404等错误</span></span><br><span class="line"><span class="comment"> * Author: yangxiangming<span class="doctag">@live</span>.com</span></span><br><span class="line"><span class="comment"> * Date: 2015/11/05</span></span><br><span class="line"><span class="comment"> * Time: 16:35</span></span><br><span class="line"><span class="comment"> */</span>  </span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">Think</span>\<span class="title">Controller</span></span><br><span class="line"><span class="title">class</span> <span class="title">EmptyController</span> <span class="title">extends</span> <span class="title">Controller</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="title">public</span> <span class="title">function</span> <span class="title">index</span>() &#123;  </span><br><span class="line">        $<span class="title">this</span>-&gt;<span class="title">_empty</span>();  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">_empty</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        header(<span class="string">'HTTP/1.1 404 Not Found'</span>);  </span><br><span class="line">        <span class="keyword">$this</span>-&gt;display(<span class="string">'Public:404'</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在Lib文件创建EmptyAction.class.php控制器</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Description: 空操作404等错误</span></span><br><span class="line"><span class="comment"> * Author: yangxiangming<span class="doctag">@live</span>.com</span></span><br><span class="line"><span class="comment"> * Date: 2015/11/05</span></span><br><span class="line"><span class="comment"> * Time: 16:40</span></span><br><span class="line"><span class="comment"> */</span>  </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">EmptyAction</span> <span class="keyword">extends</span> <span class="title">CommonAction</span> </span>&#123;  </span><br><span class="line">   <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">_initialize</span><span class="params">()</span></span>&#123;  </span><br><span class="line">        <span class="keyword">parent</span>::_initialize();  </span><br><span class="line">   &#125;  </span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">index</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">       <span class="keyword">$this</span>-&gt;_empty();  </span><br><span class="line">   &#125;  </span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">_empty</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">       header(<span class="string">'HTTP/1.1 404 Not Found'</span>);  </span><br><span class="line">       <span class="keyword">$this</span>-&gt;display(<span class="string">'Public:404'</span>);  </span><br><span class="line">   &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上是TP访问URL错误处理，具体还是以实际遇到的错误来实现不同的引导，当然也可以自定定义的更人性化……</p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/code/">code</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/php/">php</a><a href="/tags/mognodb/">mognodb</a><a href="/tags/thinkphp/">thinkphp</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+    </main>
+
+    <footer class="site-footer">
+    <hr/>
+    <p><a target="_blank" href="http://info.flagcounter.com/JB7l"><img src="http://s09.flagcounter.com/mini/JB7l/bg_F3FFD1/txt_08043D/border_8A8A8A/flags_1/" alt="Flag Counter" border="0"></a></p>
+    <p id="footer-important-time"></p>
+    <p>
+      Explanation: Vi estas mia vivo … &&
+      Friends: <a target="_blank" href="http://www.linyiit.cn/">张老师</a> |
+      <a target="_blank" href="http://www.mazhaowei.com/">马兆伟</a> |
+      <a target="_blank" href="http://www.z70.net/">李&nbsp;&nbsp;&nbsp;杰</a>
+    </p>
+    <small class="copyright">
+    
+    Copyright &copy; 2014- 2020 yangxiangming
+    
+    </small>
+
+</footer>
+
+<script type="text/javascript">
+(function(){
+  //时间
+  var _systemTime = new Date();
+  var _y = _systemTime.getFullYear();
+  var _loveTime = getTimeCount('2012-06-03'), _lifeTime = getTimeCount('2013-06-10'), _licensingTime = getTimeCount('2016-04-13'), _getMarriedTime = getTimeCount('2016-07-19'), _getBornTime = getTimeCount('2017-06-01');
+  document.getElementById('footer-important-time').innerHTML = ('Love Time: <a>'+_loveTime+'</a> day | Life Time: <a>'+_lifeTime+'</a> day | Licensing Time: <a>'+_licensingTime+'</a> day | Get Married Time: <a>'+_getMarriedTime+'</a> day | Get Born Time: <a>'+_getBornTime+'</a> day');
+}());
+
+/**
+ *
+ * @param _t 开始时间
+ * @returns {Number} 天数
+ */
+function getTimeCount(_t){
+  var _system = new Date();
+  var _tmpTime = new Date(_t.replace(/-/g, "/"));
+  var _count =  _system.getTime()-_tmpTime.getTime();
+  return parseInt(_count/(1000*60*60*24));
+}
+</script>
+
+    
+  </div>
+</div>
+</body>
+</html>

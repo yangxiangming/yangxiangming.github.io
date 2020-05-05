@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>PHPAES加密&amp;解密 | YANGXIANGMING</title>
+
+  
+  <meta name="author" content="yangxiangming">
+  
+
+  
+  <meta name="description" content="Vi estas mia vivo …">
+  
+
+  
+  
+  <meta name="keywords" content="php,mcrypt,加密">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="PHPAES加密&amp;解密">
+
+  <meta property="og:site_name" content="YANGXIANGMING">
+
+  
+  <meta property="og:image" content="/favicon.ico">
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="YANGXIANGMING" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">YANGXIANGMING<sup>Beta 1.0.0</sup></a>
+    </h1>
+    <p class="site-description"></p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">主页</a></li>
+      
+        <li><a href="/archives">归档</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>PHPAES加密&amp;解密</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2015/09/25/PHP AES加密解密/" rel="bookmark">
+        <time class="entry-date published" datetime="2015-09-25T03:02:25.000Z">
+          Sep 25 2015
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p><code>AES</code>(英文全称英：Advanced Encryption Standard，缩写：<code>AES</code>)对称加密算法是目前世界流行的对称加密算法之一，据说美国联邦政府也以这种加密方式为标准，瞬间档次值爆表。</p>
+<a id="more"></a>
+<p>以PHP为例，请确保PHP配置扩展<code>mcrypt</code>已开启，具体填充模式、算法位数、算法Key大小长度等请参考官方手册<a href="http://php.net/manual/zh/book.mcrypt.php" target="_blank" rel="noopener">Mcrypt</a></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Description: MongoDB操作</span></span><br><span class="line"><span class="comment"> * Author: yangxiangming<span class="doctag">@live</span>.com</span></span><br><span class="line"><span class="comment"> * Date: 2014/12/9</span></span><br><span class="line"><span class="comment"> * Time: 16:35</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">McryptAES</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> $key = <span class="string">"bcb04b7e103a0cd8b54763051cef08bc55abe029fdebae5e1d417e2ffb2a00a3"</span>; <span class="comment">/** 加密KEY */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> $mode = MCRYPT_MODE_ECB; <span class="comment">/** 填充模式 */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> $cipher = MCRYPT_RIJNDAEL_128; <span class="comment">/** AES加密算法位数 */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * description AES加密</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">mcrypt_encrypt_aes</span><span class="params">($plaintext)</span> </span>&#123;</span><br><span class="line">        $ciphertext = mcrypt_encrypt ( <span class="keyword">self</span>::$cipher, <span class="keyword">self</span>::get_hash ( <span class="keyword">self</span>::$key ), $plaintext, <span class="keyword">self</span>::$mode, <span class="keyword">self</span>::get_iv () );</span><br><span class="line">        <span class="keyword">return</span> base64_encode ( $ciphertext );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * description AES解密</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">mcrypt_decrypt_aes</span><span class="params">($ciphertext)</span> </span>&#123;</span><br><span class="line">        $ciphertext = base64_decode ( $ciphertext );</span><br><span class="line">        <span class="keyword">return</span> trim ( mcrypt_decrypt ( <span class="keyword">self</span>::$cipher, <span class="keyword">self</span>::get_hash ( <span class="keyword">self</span>::$key ), $ciphertext, <span class="keyword">self</span>::$mode, <span class="keyword">self</span>::get_iv () ) );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * description hash算法生成加密散列值</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">get_hash</span><span class="params">($plaintext)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> hash ( <span class="string">'sha256'</span>, $plaintext, <span class="keyword">true</span> );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * description 随机源创建初始向量</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">get_iv</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        $iv_size = mcrypt_get_iv_size ( <span class="keyword">self</span>::$cipher, <span class="keyword">self</span>::$mode );</span><br><span class="line">        <span class="keyword">return</span> mcrypt_create_iv ( $iv_size, MCRYPT_RAND );</span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 调用测试</span></span><br><span class="line">$encrypt = McryptAES::mcrypt_encrypt_aes(<span class="string">'develop'</span>);</span><br><span class="line">var_dump($encrypt);</span><br><span class="line">$decrypt = McryptAES::mcrypt_decrypt_aes($encrypt);</span><br><span class="line">var_dump($decrypt);</span><br></pre></td></tr></table></figure>
+
+<p>一切以实际需求为准，如上例子仅供参考。</p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/code/">code</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/php/">php</a><a href="/tags/mcrypt/">mcrypt</a><a href="/tags/加密/">加密</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+    </main>
+
+    <footer class="site-footer">
+    <hr/>
+    <p><a target="_blank" href="http://info.flagcounter.com/JB7l"><img src="http://s09.flagcounter.com/mini/JB7l/bg_F3FFD1/txt_08043D/border_8A8A8A/flags_1/" alt="Flag Counter" border="0"></a></p>
+    <p id="footer-important-time"></p>
+    <p>
+      Explanation: Vi estas mia vivo … &&
+      Friends: <a target="_blank" href="http://www.linyiit.cn/">张老师</a> |
+      <a target="_blank" href="http://www.mazhaowei.com/">马兆伟</a> |
+      <a target="_blank" href="http://www.z70.net/">李&nbsp;&nbsp;&nbsp;杰</a>
+    </p>
+    <small class="copyright">
+    
+    Copyright &copy; 2014- 2020 yangxiangming
+    
+    </small>
+
+</footer>
+
+<script type="text/javascript">
+(function(){
+  //时间
+  var _systemTime = new Date();
+  var _y = _systemTime.getFullYear();
+  var _loveTime = getTimeCount('2012-06-03'), _lifeTime = getTimeCount('2013-06-10'), _licensingTime = getTimeCount('2016-04-13'), _getMarriedTime = getTimeCount('2016-07-19'), _getBornTime = getTimeCount('2017-06-01');
+  document.getElementById('footer-important-time').innerHTML = ('Love Time: <a>'+_loveTime+'</a> day | Life Time: <a>'+_lifeTime+'</a> day | Licensing Time: <a>'+_licensingTime+'</a> day | Get Married Time: <a>'+_getMarriedTime+'</a> day | Get Born Time: <a>'+_getBornTime+'</a> day');
+}());
+
+/**
+ *
+ * @param _t 开始时间
+ * @returns {Number} 天数
+ */
+function getTimeCount(_t){
+  var _system = new Date();
+  var _tmpTime = new Date(_t.replace(/-/g, "/"));
+  var _count =  _system.getTime()-_tmpTime.getTime();
+  return parseInt(_count/(1000*60*60*24));
+}
+</script>
+
+    
+  </div>
+</div>
+</body>
+</html>
