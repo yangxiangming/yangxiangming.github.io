@@ -48,15 +48,15 @@ class OpenSSL {
 
 		//初始化向量
 		$ivlen = openssl_cipher_iv_length($cipher);
-    	$iv = openssl_random_pseudo_bytes($ivlen);
+  	$iv = openssl_random_pseudo_bytes($ivlen);
 
-    	//加密 - 版本判断
-    	if(phpversion() >= '7.1.0'){
-			$ciphertext = openssl_encrypt($data, $cipher, $key, $options=0, $iv);
-    	} else {
-    		$ciphertext = openssl_encrypt($plaintext, $cipher, $key, $options=OPENSSL_RAW_DATA, $iv);
-    	}
-    	return $ciphertext;
+  	//加密 - 版本判断
+  	if(phpversion() >= '7.1.0'){
+		$ciphertext = openssl_encrypt($data, $cipher, $key, $options=0, $iv);
+  	} else {
+  		$ciphertext = openssl_encrypt($plaintext, $cipher, $key, $options=OPENSSL_RAW_DATA, $iv);
+  	}
+  	return $ciphertext;
 	}
 
 	/**
@@ -73,16 +73,16 @@ class OpenSSL {
 
 		//初始化向量
 		$ivlen = openssl_cipher_iv_length($cipher);
-    	$iv = openssl_random_pseudo_bytes($ivlen);
+  	$iv = openssl_random_pseudo_bytes($ivlen);
 
-    	//解密 - 版本判断
-    	if(phpversion() >= '7.1.0'){
-    		$plaintext = openssl_decrypt($data, $cipher, $key, $options=0, $iv);
-    	} else {
-    		$plaintext = openssl_decrypt($ciphertext_raw, $cipher, $key, $options=OPENSSL_RAW_DATA, $iv);
-    	}
+  	//解密 - 版本判断
+  	if(phpversion() >= '7.1.0'){
+  		$plaintext = openssl_decrypt($data, $cipher, $key, $options=0, $iv);
+  	} else {
+  		$plaintext = openssl_decrypt($ciphertext_raw, $cipher, $key, $options=OPENSSL_RAW_DATA, $iv);
+  	}
 
-    	return $plaintext;
+  	return $plaintext;
 	}
 }
 ```
