@@ -7,54 +7,91 @@ author: yangxiangming
 tags: [php, fun]
 ---
 
-PHP作为世界上最好的编程语言...哈哈...。也是可以实现一些算法的，比如杨辉三角、约瑟夫环、扑克洗牌、冒泡、二分等。
+PHP作为世界上最好的编程语言...哈哈...。也是可以实现一些算法的，比如杨辉三角、约瑟夫环、扑克洗牌等。
 <!-- more -->
 
-在计算机科学中，二分查找算法是一种在有序数组中查找某一特定元素的搜索算法。搜索过程从数组的中间元素开始，如果中间元素正好是要查找的元素，则搜索过程结束；如果某一特定元素大于或者小于中间元素，则在数组大于或小于中间元素的那一半中查找，而且跟开始一样从中间元素开始比较。如果在某一步骤数组为空，则代表找不到。这种搜索算法每一次比较都使搜索范围缩小一半。
+洗牌算法是我们常见的随机问题，在玩游戏、随机排序时经常会碰到，本质是让一个数组内的元素随机排列。类似于洗牌，将所有牌的位置打乱，让他们随机出现在任何位置。
 
 ```php
 <?php
 /**
- * 二分查找
+ * 扑克洗牌
+ * @param int $cardNum 扑克张数
  */
-function binarySearch($target,$object) {
-  $total = count($object);
-  $lower = 0;
-  $high = $total - 1;
-  while($lower <= $high) {
-    $middle = intval(($lower + $high) / 2);
-    if($object[$middle] > $target) {
-      $high = $middle - 1;
-    } elseif ($object[$middle] < $target) {
-      $lower = $middle + 1;
-    } else{
-      return $middle;
-    }
+function washCard($cardNum = 54){
+  $cards = $tmp = array();
+  for ($i = 0; $i < $cardNum; $i++){
+    $tmp[$i] = $i;
   }
-  return false;
+
+  for ($i = 0; $i < $cardNum; $i++){
+    $index = rand(0, $cardNum - $i - 1);
+    $cards[$i] = $tmp[$index];
+    unset($tmp[$index]);
+    $tmp = array_values($tmp);
+  }
+  return $cards;
 }
 
 ```
 
-冒泡排序是一种简单的排序算法。它重复地走访过要排序的数列，一次比较两个元素，如果他们的顺序错误就把他们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。这个算法的名字由来是因为越小的元素会经由交换慢慢“浮”到数列的顶端。
+> 约瑟夫是1世纪的一名犹太历史学家。他在自己的日记中写道，他和他的40个战友被罗马军队包围在洞中。他们讨论是自杀还是被俘，最终决定自杀，并以抽签的方式决定谁杀掉谁。约瑟夫斯和另外一个人是最后两个留下的人。约瑟夫斯说服了那个人，他们将向罗马军队投降，不再自杀。约瑟夫斯把他的存活归因于运气或天意，他不知道是哪一个。
+
+在计算机编程的算法中，称为约瑟夫环。人们站在一个等待被处决的圈子里。计数从圆圈中的指定点开始，并沿指定方向围绕圆圈进行。 在跳过指定数量的人之后，执行下一个人。 对剩下的人重复该过程，从下一个人开始，朝同一方向跳过相同数量的人，直到只剩下一个人，并被释放。
 
 ```php
-<?php
 /**
- * 冒泡排序
+ * 约瑟夫环
+ * @param array $array 数组列表
+ * @param int $key 循环到第几剔除
  */
-function bubbleSort($array) {
-  $len = count($array);
-  for ($i = 0; $i < $len - 1; $i++) {
-    for ($j = 0; $j < $len - 1 - $i; $j++) {
-      if ($array[$j] > $array[$j+1]) {
-        $tmp = $array[$j];
-        $array[$j] = $array[$j+1];
-        $array[$j+1] = $tmp;
+function josephusKing($array, $key, $current = 0){
+    $number = count($array);
+    $num = 1;
+    if(count($array) == 1){
+        echo $array[0]."-josephus king";
+        return;
+    }
+    else{
+        while($num++ < $key){
+            $current++ ;
+            $current = $current%$number;
+        }
+        echo $array[$current]."-cull unit<br/>";
+        array_splice($array , $current , 1);
+        josephusKing($array , $key , $current);
+    }
+}
+
+```
+
+杨辉三角中的三角形数表，一堆数字组成的三角形状，是自然界和谐统一的体现。每个数是它左上方和右上方的数的和, 用这样非常简单的规律这样最终可以得到一个无穷无尽的三角形。
+
+```php
+/**
+ * 杨辉三角
+ * @param int $floor 要求的层数
+ */
+function triangleSequence($floor = 1){
+  //初始化数组
+  $array = [1,1];
+  //初始化索引
+  $key = 0;
+  while ($key < $floor) {
+    if ($key == 0) {
+      echo $array[$key]."\t";
+    } elseif ($key == 1) {
+      echo $array[$key - 1]."\t".$array[$key]."\t";
+    } else {
+      $old = $array;
+      for ($i = 0;$i <= count($old);$i++) {
+        $array[$i] = $old[$i-1] + $old[$i];
+        echo $array[$i]."\t";
       }
     }
+    $key ++;
+    echo "<br/>";
   }
-  return $array;
 }
 
 ```
