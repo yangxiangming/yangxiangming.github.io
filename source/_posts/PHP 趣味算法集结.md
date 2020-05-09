@@ -95,3 +95,25 @@ function triangleSequence($floor = 1){
 }
 
 ```
+
+乘法口诀是中国古代筹算中进行乘法、除法、开方等运算的基本计算规则，沿用至今已有两千多年，九九表也是小学算术的基本功。
+
+```php
+/**
+ * 乘法口诀
+ */
+function multiplicationTable(){
+  $html = "<table>";
+  for ($i = 1; $i <= 9; $i++){
+    $html .= "<tr>";
+    for ($k = 1; $k <= $i; $k++){
+      $html .= "<td align='right'>";
+      $html .= $k."x".$i."=".$i * $k."   ";
+      $html .= "</td>";
+    }
+    $html .= "</tr>";
+  }
+  $html .= "</table>";
+}
+
+```
