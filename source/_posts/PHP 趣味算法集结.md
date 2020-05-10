@@ -117,3 +117,23 @@ function multiplicationTable(){
 }
 
 ```
+
+```php
+/**
+ * 自动创建目录
+ * @param string $folder 服务器路径
+ */
+function makePath($folder){
+  if (!is_dir($folder) && $folder != './' && $folder != '../'){
+    $pathname = '';
+    $folders = explode('/', $folder);
+    foreach ($folders as $folder){
+      $pathname .= $folder . '/';
+      if ($folder != '' && $folder != '.' && $folder != '..' && !is_dir($pathname)){
+        mkdir($pathname);
+      }
+    }
+    // chmod($folder,0777);
+  }
+}
+```
